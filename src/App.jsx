@@ -17,7 +17,7 @@ export default function App() {
   // Background music: "Away" by Meydän
   // Licensed under Creative Commons: By Attribution 4.0 International (CC BY 4.0)
   const [backgroundMusic] = useState(
-    () => new Audio("./mp3/Meydän_Away.mp3")
+    () => new Audio("./mp3/Meydan_Away.mp3")
   );
 
   /**
