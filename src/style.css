@@ -20,7 +20,7 @@ body,
   -webkit-touch-callout: none;
 }
 
-#demo{
+#demo {
   position: fixed;
   color: gray;
   z-index: 999;
@@ -29,6 +29,18 @@ body,
   font-size: 0.5rem;
 }
 
-#demo a{
+#demo a {
   color: lightblue;
+}
+
+#muteButtom {
+  cursor: "pointer";
+  position: absolute;
+  z-index: 999;
+  height: 1.5rem;
+  left: 50%;
+  transform: translate(-50%);
+  top: 1rem;
+  left: 96%;
+  opacity: 1;
 }

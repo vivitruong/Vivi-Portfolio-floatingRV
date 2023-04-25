@@ -1,5 +1,5 @@
 import * as THREE from "three";
-import { useEffect, useRef, useState, useMemo } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   useGLTF,
   useTexture,
@@ -7,6 +7,7 @@ import {
   shaderMaterial,
   useVideoTexture,
   Text,
+  useProgress,
 } from "@react-three/drei";
 import { useFrame, extend, useThree } from "@react-three/fiber";
 import fragmentShader from "./shaders/screen/fragment.glsl";
@@ -44,6 +45,15 @@ const MouseMonitorShaderMaterial = shaderMaterial(
 extend({ MonitorShaderMaterial, MouseMonitorShaderMaterial });
 
 export default function FloatingRV() {
+  /**
+   * Get loading progress
+   */
+  const { active, progress, errors, item, loaded, total } = useProgress();
+
+  // Prepare state
+  const [appStarting, setAppStarting] = useState(false);
+  let appStartingTimeout;
+
   /**
    * Prepare ref
    */
@@ -166,7 +176,6 @@ export default function FloatingRV() {
   const [emailSignHover, setEmailSignHover] = useState(false);
   const [linkedinSignHover, setLinkedinSignHover] = useState(false);
   const [githubSignHover, setGithubSignHover] = useState(false);
-  const [signHover, setSignHover] = useState(false);
 
   const [focusProject, setFocusProject] = useState(false);
   const [focusAbout, setFocusAbout] = useState(false);
@@ -192,38 +201,38 @@ export default function FloatingRV() {
   const handleHoverEvent = (item) => {
     if (item.name === "projectsSign") {
       setProjectsSignHover(true);
-      setSignHover(true);
+      document.body.style.cursor = "pointer";
     } else if (item.name === "aboutSign") {
       setAboutSignHover(true);
-      setSignHover(true);
+      document.body.style.cursor = "pointer";
     } else if (item.name === "emailSign") {
       setEmailSignHover(true);
-      setSignHover(true);
+      document.body.style.cursor = "pointer";
     } else if (item.name === "linkedinSign") {
       setLinkedinSignHover(true);
-      setSignHover(true);
+      document.body.style.cursor = "pointer";
     } else if (item.name === "githubSign") {
       setGithubSignHover(true);
-      setSignHover(true);
+      document.body.style.cursor = "pointer";
     }
   };
 
   const handleLeaveEvent = (item) => {
     if (item.name === "projectsSign") {
       setProjectsSignHover(false);
-      setSignHover(false);
+      document.body.style.cursor = "auto";
     } else if (item.name === "aboutSign") {
       setAboutSignHover(false);
-      setSignHover(false);
+      document.body.style.cursor = "auto";
     } else if (item.name === "emailSign") {
       setEmailSignHover(false);
-      setSignHover(false);
+      document.body.style.cursor = "auto";
     } else if (item.name === "linkedinSign") {
       setLinkedinSignHover(false);
-      setSignHover(false);
+      document.body.style.cursor = "auto";
     } else if (item.name === "githubSign") {
       setGithubSignHover(false);
-      setSignHover(false);
+      document.body.style.cursor = "auto";
     }
   };
 
@@ -239,9 +248,6 @@ export default function FloatingRV() {
         console.log(item.name);
       } else if (item.name === "githubSign") {
         console.log(item.name);
-      } else {
-        if (focusAbout) setFocusAbout(false);
-        if (focusProject) setFocusProject(false);
       }
     }
   };
@@ -249,18 +255,19 @@ export default function FloatingRV() {
   const exitAboutFocus = () => {
     setFocusAbout(false);
     setExitingAboutFocus(true);
-    setSignHover(false);
+    document.body.style.cursor = "auto";
     clearTimeout(activateControlTimeout);
   };
 
   const exitProjectFocus = () => {
     setFocusProject(false);
     setExitingProjectFocus(true);
-    setSignHover(false);
+    document.body.style.cursor = "auto";
     clearTimeout(activateControlTimeout);
   };
 
   // Getting camera focus positions
+  const cameraInitialPosition = new THREE.Vector3(30, 0, 27);
   const lerpProjectInitail = new THREE.Vector3(25, 7, 0);
   const lookAtInitial = new THREE.Vector3(0, 7, 0);
   const lerpProjectPosition = new THREE.Vector3(15, 7, -3);
@@ -274,11 +281,27 @@ export default function FloatingRV() {
   let activateControlTimeout;
 
   useEffect(() => {
-    // Change signs hover state
-    document.body.style.cursor = signHover ? "pointer" : "auto";
-  }, [signHover]);
+    // Loading state
+    if (progress === 100) {
+      setAppStarting(true);
+      appStartingTimeout = setTimeout(() => {
+        setAppStarting(false);
+      }, 3000);
+    }
+
+    return () => {
+      clearTimeout(appStartingTimeout);
+      setAppStarting(false);
+    };
+  }, []);
 
   useFrame((state, delta) => {
+    // Change camera view once app started
+    if (appStarting && state.controls) {
+      state.camera.lookAt(0, 7, 0);
+      state.camera.position.lerp(cameraInitialPosition, 0.05);
+    }
+
     // Animate monitor shader
     monitorShaderRef.current.uTime += delta;
     monitorShaderRef2.current.uTime += delta;
@@ -299,7 +322,7 @@ export default function FloatingRV() {
     if (focusProject) {
       state.controls.enabled = false;
       state.camera.position.lerp(lerpProjectPosition, 0.06);
-      lookAtPoaition.lerp(lerpProjectLookAt, 0.1);
+      lookAtPoaition.lerp(lerpProjectLookAt, 0.06);
       state.camera.lookAt(lerpProjectLookAt);
     }
     if (focusAbout) {
@@ -320,22 +343,22 @@ export default function FloatingRV() {
     if (!focusAbout && exitingAboutFocus) {
       clearTimeout(cameraStageTimeout);
       state.camera.position.lerp(lerpAboutPosition1, 0.06);
-      lookAtPoaition.lerp(lookAtInitial, 0.01);
+      lookAtPoaition.lerp(lookAtInitial, 0.06);
       state.camera.lookAt(lookAtPoaition);
       activateControlTimeout = setTimeout(() => {
         state.controls.enabled = true;
         setExitingAboutFocus(false);
         setFocusAboutStage(1);
-      }, 1000);
+      }, 1500);
     }
     if (!focusProject && exitingProjectFocus) {
       state.camera.position.lerp(lerpProjectInitail, 0.06);
-      lookAtPoaition.lerp(lookAtInitial, 0.01);
+      lookAtPoaition.lerp(lookAtInitial, 0.06);
       state.camera.lookAt(lookAtPoaition);
       activateControlTimeout = setTimeout(() => {
         state.controls.enabled = true;
         setExitingProjectFocus(false);
-      }, 1000);
+      }, 500);
     }
   });
 
@@ -506,8 +529,8 @@ export default function FloatingRV() {
           <group
             position={[0, 3.6, 4]}
             rotation={[0, Math.PI, 0]}
-            onPointerEnter={() => setSignHover(true)}
-            onPointerLeave={() => setSignHover(false)}
+            onPointerEnter={() => (document.body.style.cursor = "pointer")}
+            onPointerLeave={() => (document.body.style.cursor = "auto")}
             onClick={exitAboutFocus}
           >
             <Text
@@ -533,9 +556,34 @@ export default function FloatingRV() {
       <mesh geometry={rvBodyMonitors.nodes.miniMonitorTwo.geometry}>
         <meshBasicMaterial map={dogecoinTexture} />
       </mesh>
-      <mesh geometry={rvBodyMonitors.nodes.pianoScreen.geometry}>
-        <meshBasicMaterial map={musicTexture} />
-      </mesh>
+
+      {/* Music monitor */}
+      <group>
+        <mesh geometry={rvBodyMonitors.nodes.pianoScreen.geometry}>
+          <meshBasicMaterial map={musicTexture} />
+        </mesh>
+        <Text
+          font={"./fonts/Concert_One/ConcertOne-Regular.ttf"}
+          scale={0.27}
+          position={[0.2, 13, -6.7]}
+          lineHeight={1}
+          maxWidth={10}
+        >
+          Background music: "Away" by Meydän
+          <meshBasicMaterial />
+        </Text>
+        <Text
+          font={"./fonts/Concert_One/ConcertOne-Regular.ttf"}
+          scale={0.14}
+          position={[0.2, 12.45, -6.7]}
+          lineHeight={1}
+          maxWidth={20}
+        >
+          Licensed under Creative Commons: By Attribution 4.0 International (CC
+          BY 4.0)
+          <meshBasicMaterial />
+        </Text>
+      </group>
       <mesh geometry={rvBodyMonitors.nodes.subMonitorOne.geometry}>
         <mouseMonitorShaderMaterial ref={mouseMonitorShaderRef} />
       </mesh>
@@ -549,8 +597,8 @@ export default function FloatingRV() {
           <group
             position={[4.8, 4.72, -2.93]}
             rotation={[0, Math.PI / 2, 0]}
-            onPointerEnter={() => setSignHover(true)}
-            onPointerLeave={() => setSignHover(false)}
+            onPointerEnter={() => (document.body.style.cursor = "pointer")}
+            onPointerLeave={() => (document.body.style.cursor = "auto")}
             onClick={exitProjectFocus}
           >
             <Text

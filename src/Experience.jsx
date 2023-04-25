@@ -13,7 +13,7 @@ export default function Experience() {
         maxDistance={120}
         enablePan={false}
         autoRotate
-        autoRotateSpeed={-1}
+        autoRotateSpeed={-0.3}
       />
 
       <EffectComposer>
