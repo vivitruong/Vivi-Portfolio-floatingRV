@@ -243,11 +243,11 @@ export default function FloatingRV() {
       } else if (item.name === "aboutSign") {
         setFocusAbout(true);
       } else if (item.name === "emailSign") {
-        console.log(item.name);
+        window.open("mailto:vivitruong1506@gmail.com")
       } else if (item.name === "linkedinSign") {
-        console.log(item.name);
+        window.open("https://www.linkedin.com/in/vi-truong-421698253", "_blank")
       } else if (item.name === "githubSign") {
-        console.log(item.name);
+        window.open("https://github.com/vivitruong", "_blank")
       }
     }
   };
@@ -497,30 +497,31 @@ export default function FloatingRV() {
         <Text
           font={"./fonts/Concert_One/ConcertOne-Regular.ttf"}
           scale={0.25}
-          position={[-0.3, 5.15, 4]}
+          position={[0, 5.15, 4]}
           rotation={[0, Math.PI, 0]}
-          maxWidth={20}
+          maxWidth={18}
           lineHeight={1.3}
           outlineWidth={0.02}
           outlineColor={"gray"}
         >
-          Hi, I am Vivi. I am a full-stack software engineer with a particular
-          focus on blockchain and Web3 technologies.
+          Hi, I'm Vivi. I'm a full-stack software engineer with a passion for
+          Blockchain and Web3 technologies.
           <meshBasicMaterial color={"gray"} />
         </Text>
 
         <Text
           font={"./fonts/Concert_One/ConcertOne-Regular.ttf"}
           scale={0.18}
-          position={[0, 4.15, 4]}
+          position={[0.1, 4.15, 4]}
           rotation={[0, Math.PI, 0]}
           maxWidth={24}
           lineHeight={1}
           outlineWidth={0.01}
           outlineColor={"gray"}
         >
-          Skill set: HTML, CSS, JavaScript, Python, SQL, Express, React, Redux,
-          MongoDB, Node, Solidity, Blockchain technology
+          Skillset: JavaScript, Python, CSS, HTML, PostgreSQL, Express.js,
+          React.js, Redux, MongoDB, Node, Solidity, Hardhat, Flask, TypeScript,
+          Threejs
           <meshBasicMaterial color={"gray"} />
         </Text>
 
