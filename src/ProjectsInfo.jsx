@@ -248,7 +248,7 @@ export default function ProjectsInfo() {
           anchorX="left"
           color={"#5E5E5E"}
         >
-          GoldenEraGrooves
+          GEGrooves
         </Text>
       </animated.group>
 
