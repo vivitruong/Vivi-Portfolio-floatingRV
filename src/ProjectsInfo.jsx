@@ -76,12 +76,15 @@ export default function ProjectsInfo() {
     }
     if (e.eventObject.name === "project2") {
       console.log(e.eventObject.name);
+      window.open("https://tradix.onrender.com/", "_blank");
     }
     if (e.eventObject.name === "project3") {
       console.log(e.eventObject.name);
+      window.open("https://vivi-projects.onrender.com/", "_blank");
     }
     if (e.eventObject.name === "project4") {
       console.log(e.eventObject.name);
+      window.open("https://gegrooves.onrender.com", "_blank");
     }
   };
 
@@ -114,7 +117,7 @@ export default function ProjectsInfo() {
       </Center>
 
       {/* Project 1 */}
-      <a href={project1Link} onClick={handleClick}>
+      <a href={project1Link}>
       <animated.group
         name={"project1"}
         scale={project1Scale}
@@ -149,7 +152,7 @@ export default function ProjectsInfo() {
       </a>
 
       {/* Project 2 */}
-      <a href={project2Link} onClick={handleClick}>
+      <a href={project2Link} >
       <animated.group
         name={"project2"}
         scale={project2Scale}
@@ -183,7 +186,7 @@ export default function ProjectsInfo() {
       </a>
 
       {/* Project 3 */}
-      <a href={project3Link} onClick={handleClick}>
+      <a href={project3Link}>
       <animated.group
         name={"project3"}
         scale={project3Scale}
@@ -217,7 +220,7 @@ export default function ProjectsInfo() {
       </a>
 
       {/* Project 4 */}
-      <a href={project4Link} onClick={handleClick}>
+      <a href={project4Link}>
       <animated.group
         name={"project4"}
         scale={project4Scale}
