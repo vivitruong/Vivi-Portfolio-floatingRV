@@ -20,6 +20,11 @@ export default function ProjectsInfo() {
   const project2Ref = useRef();
   const project3Ref = useRef();
   const project4Ref = useRef();
+  //Projects Links
+  const project1Link = 'https://vivi-portfolio.vercel.app/';
+  const project2Link = 'https://tradix.onrender.com/';
+  const project3Link = 'https://vivi-projects.onrender.com/';
+  const project4Link = 'https://gegrooves.onrender.com';
 
   // Project images
   const projectTexture = useTexture("./images/dogecoin-image.png");
@@ -109,6 +114,7 @@ export default function ProjectsInfo() {
       </Center>
 
       {/* Project 1 */}
+      <a href={project1Link} onClick={handleClick}>
       <animated.group
         name={"project1"}
         scale={project1Scale}
@@ -118,6 +124,7 @@ export default function ProjectsInfo() {
         onPointerLeave={handleLeave}
         onClick={handleClick}
         ref={project1Ref}
+
       >
         <RoundedBox args={[2.8, 0.8, 0.2]} radius={0.1}>
           <meshBasicMaterial color={"pink"} />
@@ -139,8 +146,10 @@ export default function ProjectsInfo() {
           Project 1
         </Text>
       </animated.group>
+      </a>
 
       {/* Project 2 */}
+      <a href={project2Link} onClick={handleClick}>
       <animated.group
         name={"project2"}
         scale={project2Scale}
@@ -171,8 +180,10 @@ export default function ProjectsInfo() {
           Project 2
         </Text>
       </animated.group>
+      </a>
 
       {/* Project 3 */}
+      <a href={project3Link} onClick={handleClick}>
       <animated.group
         name={"project3"}
         scale={project3Scale}
@@ -203,8 +214,10 @@ export default function ProjectsInfo() {
           Project 3
         </Text>
       </animated.group>
+      </a>
 
       {/* Project 4 */}
+      <a href={project4Link} onClick={handleClick}>
       <animated.group
         name={"project4"}
         scale={project4Scale}
@@ -235,6 +248,7 @@ export default function ProjectsInfo() {
           Project 4
         </Text>
       </animated.group>
+      </a>
     </>
   );
 }
