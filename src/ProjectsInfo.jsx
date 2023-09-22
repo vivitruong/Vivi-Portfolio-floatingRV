@@ -117,7 +117,7 @@ export default function ProjectsInfo() {
       </Center>
 
       {/* Project 1 */}
-      <a href={project1Link}>
+
       <animated.group
         name={"project1"}
         scale={project1Scale}
@@ -149,10 +149,10 @@ export default function ProjectsInfo() {
           Project 1
         </Text>
       </animated.group>
-      </a>
+
 
       {/* Project 2 */}
-      <a href={project2Link} >
+
       <animated.group
         name={"project2"}
         scale={project2Scale}
@@ -183,10 +183,10 @@ export default function ProjectsInfo() {
           Project 2
         </Text>
       </animated.group>
-      </a>
+
 
       {/* Project 3 */}
-      <a href={project3Link}>
+
       <animated.group
         name={"project3"}
         scale={project3Scale}
@@ -217,10 +217,10 @@ export default function ProjectsInfo() {
           Project 3
         </Text>
       </animated.group>
-      </a>
+
 
       {/* Project 4 */}
-      <a href={project4Link}>
+
       <animated.group
         name={"project4"}
         scale={project4Scale}
@@ -251,7 +251,7 @@ export default function ProjectsInfo() {
           Project 4
         </Text>
       </animated.group>
-      </a>
+
     </>
   );
 }
