@@ -21,10 +21,10 @@ export default function ProjectsInfo() {
   const project3Ref = useRef();
   const project4Ref = useRef();
   //Projects Links
-  const project1Link = 'https://vivi-portfolio.vercel.app/';
-  const project2Link = 'https://tradix.onrender.com/';
-  const project3Link = 'https://vivi-projects.onrender.com/';
-  const project4Link = 'https://gegrooves.onrender.com';
+  // const project1Link = 'https://vivi-portfolio.vercel.app/';
+  // const project2Link = 'https://tradix.onrender.com/';
+  // const project3Link = 'https://vivi-projects.onrender.com/';
+  // const project4Link = 'https://gegrooves.onrender.com';
 
   // Project images
   const projectTexture = useTexture("./images/dogecoin-image.png");
@@ -72,7 +72,7 @@ export default function ProjectsInfo() {
     e.stopPropagation();
     if (e.eventObject.name === "project1") {
       console.log(e.eventObject.name);
-      // window.open("https://www.google.ca", "_blank")
+      window.open("https://vivi-portfolio.vercel.app/", "_blank");
     }
     if (e.eventObject.name === "project2") {
       console.log(e.eventObject.name);
@@ -146,7 +146,7 @@ export default function ProjectsInfo() {
           anchorX="left"
           color={"#5E5E5E"}
         >
-          Project 1
+          FloatingVr
         </Text>
       </animated.group>
 
@@ -180,7 +180,7 @@ export default function ProjectsInfo() {
           anchorX="left"
           color={"#5E5E5E"}
         >
-          Project 2
+          Tradix
         </Text>
       </animated.group>
 
@@ -214,7 +214,7 @@ export default function ProjectsInfo() {
           anchorX="left"
           color={"#5E5E5E"}
         >
-          Project 3
+          CasaCloud
         </Text>
       </animated.group>
 
@@ -248,7 +248,7 @@ export default function ProjectsInfo() {
           anchorX="left"
           color={"#5E5E5E"}
         >
-          Project 4
+          GoldenEraGrooves
         </Text>
       </animated.group>
 
