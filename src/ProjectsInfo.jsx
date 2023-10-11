@@ -84,7 +84,7 @@ export default function ProjectsInfo() {
     }
     if (e.eventObject.name === "project4") {
       console.log(e.eventObject.name);
-      window.open("https://gegrooves.onrender.com", "_blank");
+      window.open("https://geg.onrender.com", "_blank");
     }
   };
 

@@ -519,9 +519,9 @@ export default function FloatingRV() {
           outlineWidth={0.01}
           outlineColor={"gray"}
         >
-          Skillset: JavaScript, Python, CSS, HTML, PostgreSQL, Express.js,
-          React.js, Redux, MongoDB, Node, Solidity, Hardhat, Flask, TypeScript,
-          Threejs
+          Skillset: JavaScript, Python, CSS, HTML, PostgreSQL, Express,
+          React, Redux, SQLAlchemy, Node, Solidity, Hardhat, Flask, TypeScript,
+          Threejs ...
           <meshBasicMaterial color={"gray"} />
         </Text>
 
