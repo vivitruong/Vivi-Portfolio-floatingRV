@@ -146,7 +146,7 @@ export default function ProjectsInfo() {
           anchorX="left"
           color={"#5E5E5E"}
         >
-          FloatingVr
+          FloatingRV
         </Text>
       </animated.group>
 

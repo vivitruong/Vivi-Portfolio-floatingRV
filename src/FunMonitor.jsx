@@ -48,7 +48,7 @@ export default function FunMonitor() {
             bevelThickness={0.02}
             bevelSize={0.02}
           >
-            Hello World
+            Xin Chao ^^~
             <meshStandardMaterial color={"#B87474"} />
           </Text3D>
         </Center>
