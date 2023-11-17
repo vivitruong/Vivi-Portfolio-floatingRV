@@ -504,8 +504,7 @@ export default function FloatingRV() {
           outlineWidth={0.02}
           outlineColor={"gray"}
         >
-          Hi, I'm Vivi. I'm a full-stack software engineer with a passion for
-          Blockchain and Web3 technologies.
+          Hi, I'm Vivi. Xin Chao Cac Ban ! I am a passionate software developer who love to build everything from scratch.
           <meshBasicMaterial color={"gray"} />
         </Text>
 

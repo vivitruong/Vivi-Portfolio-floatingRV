@@ -6,12 +6,12 @@ import muteIcon from "../public/images/muteIcon.png";
 import unmuteIcon from "../public/images/unmuteIcon.png";
 
 export default function App() {
-  /**
+  /*
    * Prepare state
    */
   const [muteState, setMuteState] = useState(muteIcon);
 
-  /**
+  /*
    * Prepare music
    */
   // Background music: "Away" by Meydän
@@ -20,7 +20,7 @@ export default function App() {
     () => new Audio("./mp3/Meydan_Away.mp3")
   );
 
-  /**
+  /*
    * Mute Event
    */
   const handleMute = (e) => {
@@ -34,7 +34,6 @@ export default function App() {
       backgroundMusic.pause();
     }
   };
-
   return (
     <>
       <img
@@ -57,4 +56,4 @@ export default function App() {
       <Loader />
     </>
   );
-}
+};

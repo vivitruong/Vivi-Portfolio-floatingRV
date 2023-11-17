@@ -15,7 +15,6 @@ export default function Experience() {
         autoRotate
         autoRotateSpeed={-0.3}
       />
-
       <EffectComposer>
         <Bloom mipmapBlur intensity={0.4} luminanceThreshold={0} radius={0.3} />
       </EffectComposer>
@@ -29,4 +28,4 @@ export default function Experience() {
       <FloatingRV />
     </Suspense>
   );
-}
+};
