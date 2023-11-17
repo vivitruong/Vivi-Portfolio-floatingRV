@@ -24,4 +24,4 @@ export default {
         sourcemap: true,
         minify: 'terser'
     }
-}
+};
