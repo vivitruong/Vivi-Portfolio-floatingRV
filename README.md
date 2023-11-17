@@ -7,3 +7,15 @@ Hi Guys! Thank you for checking out! This is my personal portfolio using React, 
 - Language: Javascript
 - Frameworks, Libraries: HTML5, CSS3, Threejs, React, Blender, Photoshop ..
 - Hosting: Vercel
+
+## Preview Images:
+- Landing page
+![landingpage](/public/images/viviport1.PNG)
+
+- Projects page
+
+![projectpage](/public/images/vivipopt2.PNG)
+
+- Introduction page
+
+![intropage](/public/images/viviport3.PNG)
